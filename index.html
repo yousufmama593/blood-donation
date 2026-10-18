@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -6,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#c90024">
 <title>Blood Donation Bangladesh</title>
+
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:Arial,sans-serif;background:#fff7f7;color:#222}
@@ -20,6 +20,7 @@ h2{color:#c90024;margin-top:0}
 label{display:block;font-weight:bold;margin:13px 0 7px}
 input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;font-size:16px;background:white}
 button{padding:14px;border:0;border-radius:9px;background:#c90024;color:white;font-size:17px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
 .mainbtn{width:100%;margin-top:18px}
 .note{font-size:13px;color:#666;line-height:1.7}
 .result{border:1px solid #eee;border-radius:10px;padding:13px;margin-top:12px;display:flex;align-items:center;gap:12px}
@@ -37,8 +38,8 @@ button{padding:14px;border:0;border-radius:9px;background:#c90024;color:white;fo
 footer{text-align:center;padding:20px;background:#a9001d;color:white;line-height:1.8}
 </style>
 </head>
-<body>
 
+<body>
 <header>
   <div class="logo">🩸</div>
   <h1>Blood Donation</h1>
@@ -49,17 +50,24 @@ footer{text-align:center;padding:20px;background:#a9001d;color:white;line-height
 <main>
 <section class="card">
   <h2>🔎 রক্তদাতা খুঁজুন</h2>
+
   <label for="searchDistrict">জেলা নির্বাচন করুন</label>
-  <select id="searchDistrict"><option value="">জেলা বেছে নিন</option></select>
+  <select id="searchDistrict">
+    <option value="">জেলা বেছে নিন</option>
+  </select>
 
   <label for="searchUpazila">উপজেলা নির্বাচন করুন</label>
-  <select id="searchUpazila"><option value="">আগে জেলা নির্বাচন করুন</option></select>
+  <select id="searchUpazila">
+    <option value="">আগে জেলা নির্বাচন করুন</option>
+  </select>
 
   <label for="searchBlood">রক্তের গ্রুপ</label>
   <select id="searchBlood">
     <option value="">রক্তের গ্রুপ বেছে নিন</option>
-    <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-    <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+    <option>A+</option><option>A-</option>
+    <option>B+</option><option>B-</option>
+    <option>AB+</option><option>AB-</option>
+    <option>O+</option><option>O-</option>
   </select>
 
   <button class="mainbtn" id="searchButton">ডোনার খুঁজুন</button>
@@ -68,24 +76,32 @@ footer{text-align:center;padding:20px;background:#a9001d;color:white;line-height
 
 <section class="card">
   <h2>❤️ রক্তদাতা হিসেবে নিবন্ধন</h2>
+
   <form id="donorForm">
     <label for="name">আপনার নাম</label>
     <input id="name" required maxlength="80" placeholder="সম্পূর্ণ নাম লিখুন">
 
     <label for="phone">ফোন নম্বর</label>
-    <input id="phone" type="tel" required inputmode="tel" maxlength="14" placeholder="01XXXXXXXXX">
+    <input id="phone" type="tel" required inputmode="tel"
+           maxlength="14" placeholder="01XXXXXXXXX">
 
     <label for="district">জেলা</label>
-    <select id="district" required><option value="">জেলা বেছে নিন</option></select>
+    <select id="district" required>
+      <option value="">জেলা বেছে নিন</option>
+    </select>
 
     <label for="upazila">উপজেলা</label>
-    <select id="upazila" required><option value="">আগে জেলা নির্বাচন করুন</option></select>
+    <select id="upazila" required>
+      <option value="">আগে জেলা নির্বাচন করুন</option>
+    </select>
 
     <label for="blood">রক্তের গ্রুপ</label>
     <select id="blood" required>
       <option value="">রক্তের গ্রুপ বেছে নিন</option>
-      <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
-      <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
+      <option>A+</option><option>A-</option>
+      <option>B+</option><option>B-</option>
+      <option>AB+</option><option>AB-</option>
+      <option>O+</option><option>O-</option>
     </select>
 
     <label class="consent">
@@ -93,20 +109,30 @@ footer{text-align:center;padding:20px;background:#a9001d;color:white;line-height
       <span>আমি সম্মতি দিচ্ছি যে আমার নাম, জেলা, উপজেলা ও রক্তের গ্রুপ প্রকাশ করা হবে। কল আইকনে চাপ দিলে আমার দেওয়া নম্বরে যোগাযোগের সুযোগ থাকবে।</span>
     </label>
 
-    <button class="mainbtn" id="registerButton" type="submit">নিবন্ধন করুন</button>
-    <p class="note">সার্চের ফলাফলে ফোন নম্বর লেখা থাকবে না। কল আইকনে চাপ দিলে ডায়ালার খুলবে।</p>
+    <button class="mainbtn" id="registerButton" type="submit">
+      নিবন্ধন করুন
+    </button>
+
+    <p class="note">
+      সার্চের ফলাফলে ফোন নম্বর লেখা থাকবে না। কল আইকনে চাপ দিলে ডায়ালার খুলবে।
+    </p>
   </form>
+
   <div id="message" aria-live="polite"></div>
 </section>
 </main>
 
-<footer>Blood Donation Bangladesh<br>রক্ত দিন, জীবন বাঁচান ❤️</footer>
+<footer>
+  Blood Donation Bangladesh<br>
+  রক্ত দিন, জীবন বাঁচান ❤️
+</footer>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
 <script>
+// Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyBBVTxXpJTWRCoCvFhnCoRjI9ePb_8KfLI",
   authDomain: "blood-donation-bd-b007e.firebaseapp.com",
@@ -119,113 +145,186 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
 const auth = firebase.auth();
 const db = firebase.database();
-
 const $ = id => document.getElementById(id);
-let districtsData = [];
+
+let bdDistricts = [];
 let authReady = false;
 
-function status(id, message, type="info") {
+// Show messages
+function status(id, message, type = "info") {
   const el = $(id);
   el.className = "status " + type;
   el.textContent = message;
 }
 
-function getArray(json) {
-  if (Array.isArray(json)) return json;
-  if (Array.isArray(json.data)) return json.data;
-  if (json.data && Array.isArray(json.data.data)) return json.data.data;
-  return [];
-}
-
-function bnName(item) {
-  if (typeof item === "string") return item;
-  return item.bn_name || item.name_bn || item.districtbn ||
-         item.upazillabn || item.bn || item.name || item.en_name || "";
-}
-
-function itemId(item) {
-  return String(item.id ?? item.district_id ?? item.districtId ?? "");
-}
-
+// Fill a dropdown
 function fillSelect(select, list, placeholder) {
   select.innerHTML = "";
+
   const first = document.createElement("option");
   first.value = "";
   first.textContent = placeholder;
   select.appendChild(first);
 
   list.forEach(item => {
-    const name = bnName(item);
-    if (!name) return;
     const option = document.createElement("option");
-    option.value = name;
-    option.textContent = name;
-    option.dataset.id = itemId(item);
+    option.value = item.name;
+    option.textContent = item.name;
     select.appendChild(option);
   });
 }
 
+// Load the complete geography list in one request.
+// Data structure: divisions -> districts -> upazilas.
 async function loadDistricts() {
-  try {
-    const response = await fetch("https://bdapis.vercel.app/geo/v2.0/districts");
-    if (!response.ok) throw new Error("District API error");
+  const districtSelects = [$("district"), $("searchDistrict")];
 
-    districtsData = getArray(await response.json());
-    if (!districtsData.length) throw new Error("District list empty");
-
-    fillSelect($("district"), districtsData, "জেলা বেছে নিন");
-    fillSelect($("searchDistrict"), districtsData, "জেলা বেছে নিন");
-  } catch (error) {
-    status("message", "জেলার তালিকা লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে পেজ রিফ্রেশ করুন।", "err");
-  }
-}
-
-async function loadUpazilas(districtId, upazilaId) {
-  const districtSelect = $(districtId);
-  const upazilaSelect = $(upazilaId);
-  const selected = districtSelect.options[districtSelect.selectedIndex];
-  const id = selected ? selected.dataset.id : "";
-
-  fillSelect(upazilaSelect, [], districtSelect.value ? "উপজেলা লোড হচ্ছে..." : "আগে জেলা নির্বাচন করুন");
-  if (!districtSelect.value || !id) return;
-
-  try {
-    const response = await fetch(
-      "https://bdapis.vercel.app/geo/v2.0/upazilas/" + encodeURIComponent(id)
-    );
-    if (!response.ok) throw new Error("Upazila API error");
-
-    const list = getArray(await response.json());
-    fillSelect(upazilaSelect, list, "উপজেলা বেছে নিন");
-
-    if (upazilaSelect.options.length === 1) {
-      fillSelect(upazilaSelect, [], "উপজেলার তালিকা পাওয়া যায়নি");
-    }
-  } catch (error) {
-    fillSelect(upazilaSelect, [], "উপজেলার তালিকা লোড হয়নি");
-  }
-}
-
-$("district").addEventListener("change", () =>
-  loadUpazilas("district", "upazila")
-);
-$("searchDistrict").addEventListener("change", () =>
-  loadUpazilas("searchDistrict", "searchUpazila")
-);
-
-// Login page নেই: anonymous Firebase sign-in.
-auth.signInAnonymously()
-  .then(() => { authReady = true; })
-  .catch(() => {
-    status("message", "Firebase Anonymous Authentication চালু নেই অথবা সংযোগে সমস্যা হয়েছে। Firebase Console-এর Authentication সেটিংস পরীক্ষা করুন।", "err");
+  districtSelects.forEach(select => {
+    select.disabled = true;
   });
 
+  try {
+    status("message", "জেলা ও উপজেলার তালিকা লোড হচ্ছে...", "info");
+
+    const response = await fetch(
+      "https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json"
+    );
+
+    if (!response.ok) {
+      throw new Error("Geography file could not be loaded");
+    }
+
+    const divisions = await response.json();
+
+    if (!Array.isArray(divisions)) {
+      throw new Error("Invalid geography data");
+    }
+
+    bdDistricts = divisions.flatMap(division =>
+      (division.districts || []).map(district => ({
+        name: district.bn_name,
+        upazilas: (district.upazilas || [])
+          .map(upazila => upazila.bn_name)
+          .filter(Boolean)
+      }))
+    ).filter(district => district.name);
+
+    if (!bdDistricts.length) {
+      throw new Error("District list is empty");
+    }
+
+    // Sort districts by Bangla name
+    bdDistricts.sort((a, b) =>
+      a.name.localeCompare(b.name, "bn")
+    );
+
+    fillDistrictSelect($("district"));
+    fillDistrictSelect($("searchDistrict"));
+
+    districtSelects.forEach(select => {
+      select.disabled = false;
+    });
+
+    $("message").textContent = "";
+
+  } catch (error) {
+    console.error("Geography list error:", error);
+
+    status(
+      "message",
+      "জেলা-উপজেলার তালিকা লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে পেজ রিফ্রেশ করুন।",
+      "err"
+    );
+  }
+}
+
+function fillDistrictSelect(select) {
+  select.innerHTML = "";
+
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = "জেলা বেছে নিন";
+  select.appendChild(first);
+
+  bdDistricts.forEach(district => {
+    const option = document.createElement("option");
+    option.value = district.name;
+    option.textContent = district.name;
+    select.appendChild(option);
+  });
+}
+
+// Load upazilas locally from the already-loaded geography list.
+// No separate API call is made when a district changes.
+function loadUpazilas(districtId, upazilaId) {
+  const districtSelect = $(districtId);
+  const upazilaSelect = $(upazilaId);
+  const selectedDistrict = districtSelect.value;
+
+  upazilaSelect.innerHTML = "";
+
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = selectedDistrict
+    ? "উপজেলা বেছে নিন"
+    : "আগে জেলা নির্বাচন করুন";
+  upazilaSelect.appendChild(first);
+
+  if (!selectedDistrict) return;
+
+  const district = bdDistricts.find(
+    item => item.name === selectedDistrict
+  );
+
+  if (!district || !district.upazilas.length) {
+    first.textContent = "এই জেলার উপজেলার তালিকা পাওয়া যায়নি";
+    return;
+  }
+
+  district.upazilas.forEach(upazilaName => {
+    const option = document.createElement("option");
+    option.value = upazilaName;
+    option.textContent = upazilaName;
+    upazilaSelect.appendChild(option);
+  });
+}
+
+$("district").addEventListener("change", () => {
+  loadUpazilas("district", "upazila");
+});
+
+$("searchDistrict").addEventListener("change", () => {
+  loadUpazilas("searchDistrict", "searchUpazila");
+});
+
+// Firebase anonymous sign-in: no visible login screen.
+auth.signInAnonymously()
+  .then(() => {
+    authReady = true;
+  })
+  .catch(error => {
+    console.error("Firebase authentication error:", error);
+
+    status(
+      "message",
+      "Firebase Anonymous Authentication চালু নেই অথবা সংযোগে সমস্যা হয়েছে। Firebase Console পরীক্ষা করুন।",
+      "err"
+    );
+  });
+
+// Normalize Bangladeshi phone numbers
 function cleanPhone(value) {
   let phone = value.replace(/[\s()-]/g, "");
-  if (phone.startsWith("+880")) phone = "0" + phone.slice(4);
-  if (phone.startsWith("880")) phone = "0" + phone.slice(3);
+
+  if (phone.startsWith("+880")) {
+    phone = "0" + phone.slice(4);
+  } else if (phone.startsWith("880")) {
+    phone = "0" + phone.slice(3);
+  }
+
   return phone;
 }
 
@@ -233,11 +332,25 @@ function validPhone(phone) {
   return /^01[3-9]\d{8}$/.test(phone);
 }
 
+// Register donor
 $("donorForm").addEventListener("submit", async event => {
   event.preventDefault();
 
   if (!authReady || !auth.currentUser) {
-    status("message", "Firebase সংযোগ হচ্ছে। একটু পরে আবার চেষ্টা করুন।", "info");
+    status(
+      "message",
+      "Firebase সংযোগ হচ্ছে। একটু পরে আবার চেষ্টা করুন।",
+      "info"
+    );
+    return;
+  }
+
+  if (!bdDistricts.length) {
+    status(
+      "message",
+      "জেলা ও উপজেলার তালিকা এখনো লোড হয়নি। পেজ রিফ্রেশ করুন।",
+      "err"
+    );
     return;
   }
 
@@ -247,18 +360,49 @@ $("donorForm").addEventListener("submit", async event => {
   const upazila = $("upazila").value;
   const blood = $("blood").value;
 
+  if (!name) {
+    status("message", "আপনার নাম লিখুন।", "err");
+    return;
+  }
+
   if (!validPhone(phone)) {
-    status("message", "সঠিক বাংলাদেশি মোবাইল নম্বর লিখুন, যেমন 01XXXXXXXXX।", "err");
+    status(
+      "message",
+      "সঠিক বাংলাদেশি মোবাইল নম্বর লিখুন, যেমন 01XXXXXXXXX।",
+      "err"
+    );
     return;
   }
 
   if (!district || !upazila || !blood) {
-    status("message", "জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।", "err");
+    status(
+      "message",
+      "জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।",
+      "err"
+    );
+    return;
+  }
+
+  const selectedDistrict = bdDistricts.find(
+    item => item.name === district
+  );
+
+  if (!selectedDistrict ||
+      !selectedDistrict.upazilas.includes(upazila)) {
+    status(
+      "message",
+      "নির্বাচিত জেলা ও উপজেলা মিলছে না। আবার নির্বাচন করুন।",
+      "err"
+    );
     return;
   }
 
   if (!$("consent").checked) {
-    status("message", "নিবন্ধনের আগে সম্মতির ঘরে টিক দিন।", "err");
+    status(
+      "message",
+      "নিবন্ধনের আগে সম্মতির ঘরে টিক দিন।",
+      "err"
+    );
     return;
   }
 
@@ -268,40 +412,74 @@ $("donorForm").addEventListener("submit", async event => {
 
   try {
     const id = db.ref("donors").push().key;
+
     const updates = {};
+
     updates["donors/" + id] = {
-      name, district, upazila, blood,
+      name: name,
+      district: district,
+      upazila: upazila,
+      blood: blood,
       createdAt: firebase.database.ServerValue.TIMESTAMP,
       consent: true
     };
+
     updates["privatePhones/" + id] = phone;
 
     await db.ref().update(updates);
+
     $("donorForm").reset();
-    fillSelect($("upazila"), [], "আগে জেলা নির্বাচন করুন");
-    status("message", "ধন্যবাদ! আপনার নিবন্ধন সংরক্ষণ হয়েছে।", "ok");
+    fillSelect(
+      $("upazila"),
+      [],
+      "আগে জেলা নির্বাচন করুন"
+    );
+
+    status(
+      "message",
+      "ধন্যবাদ! আপনার নিবন্ধন সংরক্ষণ হয়েছে।",
+      "ok"
+    );
+
   } catch (error) {
-    status("message", "তথ্য সংরক্ষণ হয়নি। Firebase Authentication ও Database Rules পরীক্ষা করুন।", "err");
+    console.error("Registration error:", error);
+
+    status(
+      "message",
+      "তথ্য সংরক্ষণ হয়নি। Firebase Authentication ও Database Rules পরীক্ষা করুন।",
+      "err"
+    );
+
   } finally {
     button.disabled = false;
     button.textContent = "নিবন্ধন করুন";
   }
 });
 
+// Search donors
 async function searchDonors() {
   const district = $("searchDistrict").value;
   const upazila = $("searchUpazila").value;
   const blood = $("searchBlood").value;
   const results = $("results");
+
   results.innerHTML = "";
 
   if (!district || !upazila || !blood) {
-    status("results", "জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।", "info");
+    status(
+      "results",
+      "জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।",
+      "info"
+    );
     return;
   }
 
   if (!authReady || !auth.currentUser) {
-    status("results", "Firebase সংযোগ হচ্ছে। একটু পরে চেষ্টা করুন।", "info");
+    status(
+      "results",
+      "Firebase সংযোগ হচ্ছে। একটু পরে চেষ্টা করুন।",
+      "info"
+    );
     return;
   }
 
@@ -321,12 +499,17 @@ async function searchDonors() {
     results.innerHTML = "";
 
     if (!matches.length) {
-      status("results", "এই এলাকায় এই রক্তের গ্রুপের কোনো নিবন্ধিত দাতা পাওয়া যায়নি।", "info");
+      status(
+        "results",
+        "এই এলাকায় এই রক্তের গ্রুপের কোনো নিবন্ধিত দাতা পাওয়া যায়নি।",
+        "info"
+      );
       return;
     }
 
     const count = document.createElement("p");
-    count.textContent = "পাওয়া গেছে: " + matches.length + " জন রক্তদাতা";
+    count.textContent =
+      "পাওয়া গেছে: " + matches.length + " জন রক্তদাতা";
     results.appendChild(count);
 
     matches.forEach(([id, donor]) => {
@@ -342,11 +525,12 @@ async function searchDonors() {
 
       const location = document.createElement("div");
       location.className = "result-meta";
-      location.textContent = donor.district + " · " + donor.upazila;
+      location.textContent =
+        (donor.district || "") + " · " + (donor.upazila || "");
 
       const group = document.createElement("span");
       group.className = "blood";
-      group.textContent = donor.blood;
+      group.textContent = donor.blood || "";
 
       info.append(name, location, group);
 
@@ -359,7 +543,10 @@ async function searchDonors() {
 
       call.addEventListener("click", async () => {
         try {
-          const phoneSnap = await db.ref("privatePhones/" + id).once("value");
+          const phoneSnap = await db
+            .ref("privatePhones/" + id)
+            .once("value");
+
           const phone = phoneSnap.val();
 
           if (!phone) {
@@ -367,22 +554,627 @@ async function searchDonors() {
             return;
           }
 
+          // Open the device dialer
           window.location.href = "tel:" + phone;
+
         } catch (error) {
-          alert("কল করার ব্যবস্থা চালু হয়নি। Firebase Rules পরীক্ষা করুন।");
+          console.error("Phone lookup error:", error);
+          alert(
+            "কল করার ব্যবস্থা চালু হয়নি। Firebase Database Rules পরীক্ষা করুন।"
+          );
         }
       });
 
       card.append(info, call);
       results.appendChild(card);
     });
+
   } catch (error) {
+    console.error("Donor search error:", error);
+
     results.innerHTML = "";
-    status("results", "ডোনার খোঁজা যায়নি। Firebase Database Rules পরীক্ষা করুন।", "err");
+
+    status(
+      "results",
+      "ডোনার খোঁজা যায়নি। Firebase Database Rules পরীক্ষা করুন।",
+      "err"
+    );
   }
 }
 
 $("searchButton").addEventListener("click", searchDonors);
+
+// Start loading the district/upazila list
+loadDistricts();
+</script>
+</body>
+                             </html><!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c90024">
+<title>Blood Donation Bangladesh</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff7f7;color:#222}
+header{background:#c90024;color:white;text-align:center;padding:28px 15px}
+.logo{font-size:42px}
+header h1{margin:8px 0;font-size:27px}
+.slogan{font-size:25px;font-weight:bold;line-height:1.6}
+.tagline{font-size:17px;margin-top:8px}
+main{max-width:650px;margin:auto;padding:18px}
+.card{background:white;border-radius:15px;padding:20px;margin-bottom:18px;box-shadow:0 3px 14px #00000010}
+h2{color:#c90024;margin-top:0}
+label{display:block;font-weight:bold;margin:13px 0 7px}
+input,select{width:100%;padding:13px;border:1px solid #ddd;border-radius:8px;font-size:16px;background:white}
+button{padding:14px;border:0;border-radius:9px;background:#c90024;color:white;font-size:17px;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+.mainbtn{width:100%;margin-top:18px}
+.note{font-size:13px;color:#666;line-height:1.7}
+.result{border:1px solid #eee;border-radius:10px;padding:13px;margin-top:12px;display:flex;align-items:center;gap:12px}
+.result-info{flex:1;overflow-wrap:anywhere}
+.result-name{font-weight:bold;font-size:17px}
+.result-meta{font-size:13px;color:#555;margin-top:5px}
+.blood{display:inline-block;background:#fff0f2;color:#c90024;padding:5px 9px;border-radius:7px;margin-top:7px;font-weight:bold}
+.call{width:48px;height:48px;flex-shrink:0;background:#168447;font-size:23px}
+.status{padding:11px;border-radius:8px;margin-top:12px;line-height:1.6;overflow-wrap:anywhere}
+.info{background:#fff2d9;color:#6a4700}
+.ok{background:#e8f7ee;color:#135c2e}
+.err{background:#fde8e8;color:#8a1420}
+.consent{display:flex;align-items:flex-start;gap:9px;font-weight:normal;line-height:1.6}
+.consent input{width:auto;margin-top:4px}
+footer{text-align:center;padding:20px;background:#a9001d;color:white;line-height:1.8}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="logo">🩸</div>
+  <h1>Blood Donation</h1>
+  <div class="slogan">রক্ত লাগবে.?<br>চিন্তা কিসের.!</div>
+  <div class="tagline">রক্ত দিন, জীবন বাঁচান ❤️</div>
+</header>
+
+<main>
+<section class="card">
+  <h2>🔎 রক্তদাতা খুঁজুন</h2>
+
+  <label for="searchDistrict">জেলা নির্বাচন করুন</label>
+  <select id="searchDistrict">
+    <option value="">জেলা বেছে নিন</option>
+  </select>
+
+  <label for="searchUpazila">উপজেলা নির্বাচন করুন</label>
+  <select id="searchUpazila">
+    <option value="">আগে জেলা নির্বাচন করুন</option>
+  </select>
+
+  <label for="searchBlood">রক্তের গ্রুপ</label>
+  <select id="searchBlood">
+    <option value="">রক্তের গ্রুপ বেছে নিন</option>
+    <option>A+</option><option>A-</option>
+    <option>B+</option><option>B-</option>
+    <option>AB+</option><option>AB-</option>
+    <option>O+</option><option>O-</option>
+  </select>
+
+  <button class="mainbtn" id="searchButton">ডোনার খুঁজুন</button>
+  <div id="results" aria-live="polite"></div>
+</section>
+
+<section class="card">
+  <h2>❤️ রক্তদাতা হিসেবে নিবন্ধন</h2>
+
+  <form id="donorForm">
+    <label for="name">আপনার নাম</label>
+    <input id="name" required maxlength="80" placeholder="সম্পূর্ণ নাম লিখুন">
+
+    <label for="phone">ফোন নম্বর</label>
+    <input id="phone" type="tel" required inputmode="tel"
+           maxlength="14" placeholder="01XXXXXXXXX">
+
+    <label for="district">জেলা</label>
+    <select id="district" required>
+      <option value="">জেলা বেছে নিন</option>
+    </select>
+
+    <label for="upazila">উপজেলা</label>
+    <select id="upazila" required>
+      <option value="">আগে জেলা নির্বাচন করুন</option>
+    </select>
+
+    <label for="blood">রক্তের গ্রুপ</label>
+    <select id="blood" required>
+      <option value="">রক্তের গ্রুপ বেছে নিন</option>
+      <option>A+</option><option>A-</option>
+      <option>B+</option><option>B-</option>
+      <option>AB+</option><option>AB-</option>
+      <option>O+</option><option>O-</option>
+    </select>
+
+    <label class="consent">
+      <input id="consent" type="checkbox" required>
+      <span>আমি সম্মতি দিচ্ছি যে আমার নাম, জেলা, উপজেলা ও রক্তের গ্রুপ প্রকাশ করা হবে। কল আইকনে চাপ দিলে আমার দেওয়া নম্বরে যোগাযোগের সুযোগ থাকবে।</span>
+    </label>
+
+    <button class="mainbtn" id="registerButton" type="submit">
+      নিবন্ধন করুন
+    </button>
+
+    <p class="note">
+      সার্চের ফলাফলে ফোন নম্বর লেখা থাকবে না। কল আইকনে চাপ দিলে ডায়ালার খুলবে।
+    </p>
+  </form>
+
+  <div id="message" aria-live="polite"></div>
+</section>
+</main>
+
+<footer>
+  Blood Donation Bangladesh<br>
+  রক্ত দিন, জীবন বাঁচান ❤️
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+
+<script>
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBBVTxXpJTWRCoCvFhnCoRjI9ePb_8KfLI",
+  authDomain: "blood-donation-bd-b007e.firebaseapp.com",
+  databaseURL: "https://blood-donation-bd-b007e-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "blood-donation-bd-b007e",
+  storageBucket: "blood-donation-bd-b007e.firebasestorage.app",
+  messagingSenderId: "511557310181",
+  appId: "1:511557310181:web:de5f89e9c915f2990c260c",
+  measurementId: "G-PL2JC10ZES"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+const db = firebase.database();
+const $ = id => document.getElementById(id);
+
+let bdDistricts = [];
+let authReady = false;
+
+// Show messages
+function status(id, message, type = "info") {
+  const el = $(id);
+  el.className = "status " + type;
+  el.textContent = message;
+}
+
+// Fill a dropdown
+function fillSelect(select, list, placeholder) {
+  select.innerHTML = "";
+
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = placeholder;
+  select.appendChild(first);
+
+  list.forEach(item => {
+    const option = document.createElement("option");
+    option.value = item.name;
+    option.textContent = item.name;
+    select.appendChild(option);
+  });
+}
+
+// Load the complete geography list in one request.
+// Data structure: divisions -> districts -> upazilas.
+async function loadDistricts() {
+  const districtSelects = [$("district"), $("searchDistrict")];
+
+  districtSelects.forEach(select => {
+    select.disabled = true;
+  });
+
+  try {
+    status("message", "জেলা ও উপজেলার তালিকা লোড হচ্ছে...", "info");
+
+    const response = await fetch(
+      "https://iqbalhasandev.github.io/bangladesh-geo-json/bangladesh-geo.json"
+    );
+
+    if (!response.ok) {
+      throw new Error("Geography file could not be loaded");
+    }
+
+    const divisions = await response.json();
+
+    if (!Array.isArray(divisions)) {
+      throw new Error("Invalid geography data");
+    }
+
+    bdDistricts = divisions.flatMap(division =>
+      (division.districts || []).map(district => ({
+        name: district.bn_name,
+        upazilas: (district.upazilas || [])
+          .map(upazila => upazila.bn_name)
+          .filter(Boolean)
+      }))
+    ).filter(district => district.name);
+
+    if (!bdDistricts.length) {
+      throw new Error("District list is empty");
+    }
+
+    // Sort districts by Bangla name
+    bdDistricts.sort((a, b) =>
+      a.name.localeCompare(b.name, "bn")
+    );
+
+    fillDistrictSelect($("district"));
+    fillDistrictSelect($("searchDistrict"));
+
+    districtSelects.forEach(select => {
+      select.disabled = false;
+    });
+
+    $("message").textContent = "";
+
+  } catch (error) {
+    console.error("Geography list error:", error);
+
+    status(
+      "message",
+      "জেলা-উপজেলার তালিকা লোড হয়নি। ইন্টারনেট সংযোগ পরীক্ষা করে পেজ রিফ্রেশ করুন।",
+      "err"
+    );
+  }
+}
+
+function fillDistrictSelect(select) {
+  select.innerHTML = "";
+
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = "জেলা বেছে নিন";
+  select.appendChild(first);
+
+  bdDistricts.forEach(district => {
+    const option = document.createElement("option");
+    option.value = district.name;
+    option.textContent = district.name;
+    select.appendChild(option);
+  });
+}
+
+// Load upazilas locally from the already-loaded geography list.
+// No separate API call is made when a district changes.
+function loadUpazilas(districtId, upazilaId) {
+  const districtSelect = $(districtId);
+  const upazilaSelect = $(upazilaId);
+  const selectedDistrict = districtSelect.value;
+
+  upazilaSelect.innerHTML = "";
+
+  const first = document.createElement("option");
+  first.value = "";
+  first.textContent = selectedDistrict
+    ? "উপজেলা বেছে নিন"
+    : "আগে জেলা নির্বাচন করুন";
+  upazilaSelect.appendChild(first);
+
+  if (!selectedDistrict) return;
+
+  const district = bdDistricts.find(
+    item => item.name === selectedDistrict
+  );
+
+  if (!district || !district.upazilas.length) {
+    first.textContent = "এই জেলার উপজেলার তালিকা পাওয়া যায়নি";
+    return;
+  }
+
+  district.upazilas.forEach(upazilaName => {
+    const option = document.createElement("option");
+    option.value = upazilaName;
+    option.textContent = upazilaName;
+    upazilaSelect.appendChild(option);
+  });
+}
+
+$("district").addEventListener("change", () => {
+  loadUpazilas("district", "upazila");
+});
+
+$("searchDistrict").addEventListener("change", () => {
+  loadUpazilas("searchDistrict", "searchUpazila");
+});
+
+// Firebase anonymous sign-in: no visible login screen.
+auth.signInAnonymously()
+  .then(() => {
+    authReady = true;
+  })
+  .catch(error => {
+    console.error("Firebase authentication error:", error);
+
+    status(
+      "message",
+      "Firebase Anonymous Authentication চালু নেই অথবা সংযোগে সমস্যা হয়েছে। Firebase Console পরীক্ষা করুন।",
+      "err"
+    );
+  });
+
+// Normalize Bangladeshi phone numbers
+function cleanPhone(value) {
+  let phone = value.replace(/[\s()-]/g, "");
+
+  if (phone.startsWith("+880")) {
+    phone = "0" + phone.slice(4);
+  } else if (phone.startsWith("880")) {
+    phone = "0" + phone.slice(3);
+  }
+
+  return phone;
+}
+
+function validPhone(phone) {
+  return /^01[3-9]\d{8}$/.test(phone);
+}
+
+// Register donor
+$("donorForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!authReady || !auth.currentUser) {
+    status(
+      "message",
+      "Firebase সংযোগ হচ্ছে। একটু পরে আবার চেষ্টা করুন।",
+      "info"
+    );
+    return;
+  }
+
+  if (!bdDistricts.length) {
+    status(
+      "message",
+      "জেলা ও উপজেলার তালিকা এখনো লোড হয়নি। পেজ রিফ্রেশ করুন।",
+      "err"
+    );
+    return;
+  }
+
+  const name = $("name").value.trim();
+  const phone = cleanPhone($("phone").value);
+  const district = $("district").value;
+  const upazila = $("upazila").value;
+  const blood = $("blood").value;
+
+  if (!name) {
+    status("message", "আপনার নাম লিখুন।", "err");
+    return;
+  }
+
+  if (!validPhone(phone)) {
+    status(
+      "message",
+      "সঠিক বাংলাদেশি মোবাইল নম্বর লিখুন, যেমন 01XXXXXXXXX।",
+      "err"
+    );
+    return;
+  }
+
+  if (!district || !upazila || !blood) {
+    status(
+      "message",
+      "জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।",
+      "err"
+    );
+    return;
+  }
+
+  const selectedDistrict = bdDistricts.find(
+    item => item.name === district
+  );
+
+  if (!selectedDistrict ||
+      !selectedDistrict.upazilas.includes(upazila)) {
+    status(
+      "message",
+      "নির্বাচিত জেলা ও উপজেলা মিলছে না। আবার নির্বাচন করুন।",
+      "err"
+    );
+    return;
+  }
+
+  if (!$("consent").checked) {
+    status(
+      "message",
+      "নিবন্ধনের আগে সম্মতির ঘরে টিক দিন।",
+      "err"
+    );
+    return;
+  }
+
+  const button = $("registerButton");
+  button.disabled = true;
+  button.textContent = "সংরক্ষণ হচ্ছে...";
+
+  try {
+    const id = db.ref("donors").push().key;
+
+    const updates = {};
+
+    updates["donors/" + id] = {
+      name: name,
+      district: district,
+      upazila: upazila,
+      blood: blood,
+      createdAt: firebase.database.ServerValue.TIMESTAMP,
+      consent: true
+    };
+
+    updates["privatePhones/" + id] = phone;
+
+    await db.ref().update(updates);
+
+    $("donorForm").reset();
+    fillSelect(
+      $("upazila"),
+      [],
+      "আগে জেলা নির্বাচন করুন"
+    );
+
+    status(
+      "message",
+      "ধন্যবাদ! আপনার নিবন্ধন সংরক্ষণ হয়েছে।",
+      "ok"
+    );
+
+  } catch (error) {
+    console.error("Registration error:", error);
+
+    status(
+      "message",
+      "তথ্য সংরক্ষণ হয়নি। Firebase Authentication ও Database Rules পরীক্ষা করুন।",
+      "err"
+    );
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "নিবন্ধন করুন";
+  }
+});
+
+// Search donors
+async function searchDonors() {
+  const district = $("searchDistrict").value;
+  const upazila = $("searchUpazila").value;
+  const blood = $("searchBlood").value;
+  const results = $("results");
+
+  results.innerHTML = "";
+
+  if (!district || !upazila || !blood) {
+    status(
+      "results",
+      "জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।",
+      "info"
+    );
+    return;
+  }
+
+  if (!authReady || !auth.currentUser) {
+    status(
+      "results",
+      "Firebase সংযোগ হচ্ছে। একটু পরে চেষ্টা করুন।",
+      "info"
+    );
+    return;
+  }
+
+  status("results", "রক্তদাতা খোঁজা হচ্ছে...", "info");
+
+  try {
+    const snapshot = await db.ref("donors").once("value");
+    const donors = snapshot.val() || {};
+
+    const matches = Object.entries(donors).filter(([id, donor]) =>
+      donor &&
+      donor.district === district &&
+      donor.upazila === upazila &&
+      donor.blood === blood
+    );
+
+    results.innerHTML = "";
+
+    if (!matches.length) {
+      status(
+        "results",
+        "এই এলাকায় এই রক্তের গ্রুপের কোনো নিবন্ধিত দাতা পাওয়া যায়নি।",
+        "info"
+      );
+      return;
+    }
+
+    const count = document.createElement("p");
+    count.textContent =
+      "পাওয়া গেছে: " + matches.length + " জন রক্তদাতা";
+    results.appendChild(count);
+
+    matches.forEach(([id, donor]) => {
+      const card = document.createElement("div");
+      card.className = "result";
+
+      const info = document.createElement("div");
+      info.className = "result-info";
+
+      const name = document.createElement("div");
+      name.className = "result-name";
+      name.textContent = donor.name || "নাম দেওয়া হয়নি";
+
+      const location = document.createElement("div");
+      location.className = "result-meta";
+      location.textContent =
+        (donor.district || "") + " · " + (donor.upazila || "");
+
+      const group = document.createElement("span");
+      group.className = "blood";
+      group.textContent = donor.blood || "";
+
+      info.append(name, location, group);
+
+      const call = document.createElement("button");
+      call.className = "call";
+      call.type = "button";
+      call.textContent = "☎";
+      call.setAttribute("aria-label", "দাতাকে কল করুন");
+      call.title = "ফোনের ডায়ালার খুলুন";
+
+      call.addEventListener("click", async () => {
+        try {
+          const phoneSnap = await db
+            .ref("privatePhones/" + id)
+            .once("value");
+
+          const phone = phoneSnap.val();
+
+          if (!phone) {
+            alert("ফোন নম্বর পাওয়া যায়নি।");
+            return;
+          }
+
+          // Open the device dialer
+          window.location.href = "tel:" + phone;
+
+        } catch (error) {
+          console.error("Phone lookup error:", error);
+          alert(
+            "কল করার ব্যবস্থা চালু হয়নি। Firebase Database Rules পরীক্ষা করুন।"
+          );
+        }
+      });
+
+      card.append(info, call);
+      results.appendChild(card);
+    });
+
+  } catch (error) {
+    console.error("Donor search error:", error);
+
+    results.innerHTML = "";
+
+    status(
+      "results",
+      "ডোনার খোঁজা যায়নি। Firebase Database Rules পরীক্ষা করুন।",
+      "err"
+    );
+  }
+}
+
+$("searchButton").addEventListener("click", searchDonors);
+
+// Start loading the district/upazila list
 loadDistricts();
 </script>
 </body>
