@@ -1,0 +1,192 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#c90024">
+<title>Blood Donation Bangladesh</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff7f7;color:#222}
+header{background:#c90024;color:white;text-align:center;padding:28px 15px}
+.logo{font-size:42px}
+header h1{margin:8px 0;font-size:27px}
+.slogan{font-size:25px;font-weight:bold;line-height:1.6}
+.tagline{font-size:17px;margin-top:8px}
+main{max-width:650px;margin:auto;padding:18px}
+.card{background:white;border-radius:15px;padding:20px;
+margin-bottom:18px;box-shadow:0 3px 14px #00000010}
+h2{color:#c90024;margin-top:0}
+label{display:block;font-weight:bold;margin:13px 0 7px}
+input,select{width:100%;padding:13px;border:1px solid #ddd;
+border-radius:8px;font-size:16px;background:white}
+button{width:100%;padding:14px;border:0;border-radius:9px;
+background:#c90024;color:white;font-size:17px;
+font-weight:bold;margin-top:18px;cursor:pointer}
+.note{font-size:13px;color:#666;line-height:1.7}
+.result{border:1px solid #eee;border-radius:10px;
+padding:13px;margin-top:12px}
+.phone{display:inline-block;background:#c90024;color:white;
+padding:10px 15px;border-radius:8px;text-decoration:none}
+footer{text-align:center;padding:20px;background:#a9001d;color:white}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🩸</div>
+  <h1>Blood Donation</h1>
+  <div class="slogan">
+    রক্ত লাগবে.?<br>
+    চিন্তা কিসের.!
+  </div>
+  <div class="tagline">রক্ত দিন, জীবন বাঁচান ❤️</div>
+</header>
+
+<main>
+  <section class="card">
+    <h2>🔎 রক্তদাতা খুঁজুন</h2>
+
+    <label for="searchDistrict">জেলা নির্বাচন করুন</label>
+    <select id="searchDistrict">
+      <option value="">জেলা বেছে নিন</option>
+    </select>
+
+    <label for="searchUpazila">উপজেলা নির্বাচন করুন</label>
+    <select id="searchUpazila">
+      <option value="">আগে জেলা নির্বাচন করুন</option>
+    </select>
+
+    <label for="searchBlood">রক্তের গ্রুপ</label>
+    <select id="searchBlood">
+      <option value="">রক্তের গ্রুপ বেছে নিন</option>
+      <option>A+</option><option>A-</option>
+      <option>B+</option><option>B-</option>
+      <option>AB+</option><option>AB-</option>
+      <option>O+</option><option>O-</option>
+    </select>
+
+    <button onclick="searchDonors()">ডোনার খুঁজুন</button>
+    <div id="results" aria-live="polite"></div>
+  </section>
+
+  <section class="card">
+    <h2>❤️ রক্তদাতা হিসেবে নিবন্ধন</h2>
+
+    <form id="donorForm">
+      <label for="name">আপনার নাম</label>
+      <input id="name" required maxlength="80"
+        placeholder="সম্পূর্ণ নাম লিখুন">
+
+      <label for="phone">ফোন নম্বর</label>
+      <input id="phone" type="tel" required
+        inputmode="tel" placeholder="01XXXXXXXXX">
+
+      <label for="district">জেলা</label>
+      <select id="district" required>
+        <option value="">জেলা বেছে নিন</option>
+      </select>
+
+      <label for="upazila">উপজেলা</label>
+      <select id="upazila" required>
+        <option value="">আগে জেলা নির্বাচন করুন</option>
+      </select>
+
+      <label for="blood">রক্তের গ্রুপ</label>
+      <select id="blood" required>
+        <option value="">রক্তের গ্রুপ বেছে নিন</option>
+        <option>A+</option><option>A-</option>
+        <option>B+</option><option>B-</option>
+        <option>AB+</option><option>AB-</option>
+        <option>O+</option><option>O-</option>
+      </select>
+
+      <button type="submit">নিবন্ধন করুন</button>
+      <p class="note">
+        আপনার তথ্য প্রকাশের আগে সম্মতি নেওয়া প্রয়োজন।
+        এই প্রাথমিক সংস্করণে তথ্য কোনো সার্ভারে জমা হয় না।
+      </p>
+    </form>
+    <div id="message" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer>
+  Blood Donation Bangladesh<br>
+  রক্ত দিন, জীবন বাঁচান ❤️
+</footer>
+
+<script>
+const districts = [
+"ঢাকা","ফরিদপুর","গাজীপুর","গোপালগঞ্জ","কিশোরগঞ্জ",
+"মাদারীপুর","মানিকগঞ্জ","মুন্সিগঞ্জ","নারায়ণগঞ্জ","নরসিংদী",
+"রাজবাড়ী","শরীয়তপুর","টাঙ্গাইল",
+"চট্টগ্রাম","কক্সবাজার","কুমিল্লা","ব্রাহ্মণবাড়িয়া",
+"চাঁদপুর","ফেনী","লক্ষ্মীপুর","নোয়াখালী","খাগড়াছড়ি",
+"রাঙ্গামাটি","বান্দরবান",
+"রাজশাহী","বগুড়া","জয়পুরহাট","নওগাঁ","নাটোর",
+"চাঁপাইনবাবগঞ্জ","পাবনা","সিরাজগঞ্জ",
+"খুলনা","বাগেরহাট","চুয়াডাঙ্গা","যশোর","ঝিনাইদহ",
+"কুষ্টিয়া","মাগুরা","মেহেরপুর","নড়াইল","সাতক্ষীরা",
+"বরিশাল","বরগুনা","ভোলা","ঝালকাঠি","পটুয়াখালী","পিরোজপুর",
+"সিলেট","হবিগঞ্জ","মৌলভীবাজার","সুনামগঞ্জ",
+"রংপুর","দিনাজপুর","গাইবান্ধা","কুড়িগ্রাম","লালমনিরহাট",
+"নীলফামারী","পঞ্চগড়","ঠাকুরগাঁও",
+"ময়মনসিংহ","জামালপুর","নেত্রকোণা","শেরপুর"
+];
+
+function fillDistricts(id){
+  const select=document.getElementById(id);
+  districts.forEach(d=>{
+    const option=document.createElement("option");
+    option.value=d;
+    option.textContent=d;
+    select.appendChild(option);
+  });
+}
+fillDistricts("district");
+fillDistricts("searchDistrict");
+
+// উপজেলা তালিকা সম্পূর্ণ সরকারি ডেটা দিয়ে পরের ধাপে যুক্ত হবে।
+function updateUpazila(districtId,upazilaId){
+  const district=document.getElementById(districtId).value;
+  const upazila=document.getElementById(upazilaId);
+  upazila.innerHTML="";
+  const option=document.createElement("option");
+  option.value="";
+  option.textContent=district
+    ? "উপজেলার তালিকা পরের ধাপে যুক্ত হবে"
+    : "আগে জেলা নির্বাচন করুন";
+  upazila.appendChild(option);
+}
+document.getElementById("district").addEventListener("change",()=>{
+  updateUpazila("district","upazila");
+});
+document.getElementById("searchDistrict").addEventListener("change",()=>{
+  updateUpazila("searchDistrict","searchUpazila");
+});
+
+function searchDonors(){
+  const district=document.getElementById("searchDistrict").value;
+  const upazila=document.getElementById("searchUpazila").value;
+  const blood=document.getElementById("searchBlood").value;
+  const results=document.getElementById("results");
+  results.textContent="";
+
+  if(!district||!upazila||!blood){
+    results.textContent="অনুগ্রহ করে জেলা, উপজেলা ও রক্তের গ্রুপ নির্বাচন করুন।";
+    return;
+  }
+  results.textContent=
+    "ডোনার খোঁজার জন্য নিরাপদ শেয়ার করা ডেটাবেস যুক্ত করতে হবে।";
+}
+
+document.getElementById("donorForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  document.getElementById("message").textContent=
+    "ফর্মের ডিজাইন প্রস্তুত। নিবন্ধন চালু করতে নিরাপদ ডেটাবেস যুক্ত করতে হবে।";
+});
+</script>
+</body>
+</html>
